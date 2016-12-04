@@ -1,0 +1,8 @@
+<%= form_tag(spotify_search_path, method: :get) do %>
+	<%= text_field_tag :title %>
+	<%= submit_tag 'Search' %>
+<% end %>
+
+<% @results.each do |result| %>
+	<%= result.name %>
+<% end %>
