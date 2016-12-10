@@ -1,8 +1,54 @@
-<%= form_tag(spotify_search_path, method: :get) do %>
-	<%= text_field_tag :title %>
-	<%= submit_tag 'Search' %>
-<% end %>
+<div class="container">
 
-<% @results.each do |result| %>
-	<%= result.name %>
-<% end %>
+    <h1 id="helper-classes" class="page-header">Artists/Tracks</h1>
+
+    <%= form_tag(spotify_search_path, method: :get) do %>
+		<%= text_field_tag :title %>
+		<%= submit_tag 'Search' %>
+	<% end %>
+
+	<h1 id="helper-classes" class="page-header">Search term: <%= params[:title] %></h1>
+
+    <% if !@artists.blank? %>
+    	<h1 id="helper-classes" class="page-header">Artists: </h1>
+
+    	<table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% @artists.each do |artist| %>
+                <tr>
+                    <td><%= artist.name %></td>
+                    <td scope="row"><%= artist.id %></td>
+                </tr>
+            <% end %>
+        </tbody>
+        </table>
+    <% end %>
+
+    <% if !@tracks.blank? %>
+    	<h1 id="helper-classes" class="page-header">Tracks: </h1>
+
+        	<table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% @tracks.each do |track| %>
+                <tr>
+                    <td><%= track.name %></td>
+                    <td scope="row"><%= track.id %></td>
+                </tr>
+            <% end %>
+        </tbody>
+        </table>
+    <% end %>    
+</div>
+

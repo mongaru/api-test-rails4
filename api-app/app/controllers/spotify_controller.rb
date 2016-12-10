@@ -1,8 +1,13 @@
 class SpotifyController < ApplicationController
 	def search
 		title = params[:title]
+		
+		@artists = []
+		@tracks = []
+		
 		if title
-			@results = RSpotify::Artists.Search(title)
+			@artists = RSpotify::Artist.search(title)
+			@tracks = RSpotify::Track.search(title)
 		end
 	end
 end
